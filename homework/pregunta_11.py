@@ -16,3 +16,16 @@ def pregunta_11():
 
 
     """
+    sums = {}
+    with open("files/input/data.csv", "r", encoding="utf-8") as f:
+        for line in f:
+            parts = line.strip().split("\t")
+            if len(parts) >= 4:
+                val = int(parts[1])
+                letters = parts[3].split(",")
+                for l in letters:
+                    if not l:
+                        continue
+                    sums[l] = sums.get(l, 0) + val
+    # order not required for dict equality, but return plain dict
+    return dict(sorted(sums.items()))

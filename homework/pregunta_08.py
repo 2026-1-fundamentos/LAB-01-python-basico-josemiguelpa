@@ -27,3 +27,15 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+    mapping = {}
+    with open("files/input/data.csv", "r", encoding="utf-8") as f:
+        for line in f:
+            parts = line.strip().split("\t")
+            if len(parts) >= 3:
+                letter = parts[0]
+                val = int(parts[1])
+                mapping.setdefault(val, set()).add(letter)
+    result = []
+    for k in sorted(mapping.keys()):
+        result.append((k, sorted(list(mapping[k]))))
+    return result

@@ -25,3 +25,12 @@ def pregunta_07():
      (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
 
     """
+    mapping = {}
+    with open("files/input/data.csv", "r", encoding="utf-8") as f:
+        for line in f:
+            parts = line.strip().split("\t")
+            if len(parts) >= 3:
+                letter = parts[0]
+                val = int(parts[1])
+                mapping.setdefault(val, []).append(letter)
+    return sorted([(k, mapping[k]) for k in mapping.keys()], key=lambda x: x[0])

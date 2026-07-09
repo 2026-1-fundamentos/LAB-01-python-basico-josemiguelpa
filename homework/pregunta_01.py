@@ -14,3 +14,10 @@ def pregunta_01():
     214
 
     """
+    total = 0
+    with open("files/input/data.csv", "r", encoding="utf-8") as f:
+        for line in f:
+            parts = line.strip().split("\t")
+            if len(parts) >= 2:
+                total += int(parts[1])
+    return total

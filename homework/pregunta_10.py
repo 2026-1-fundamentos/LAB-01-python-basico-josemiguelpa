@@ -20,3 +20,18 @@ def pregunta_10():
 
 
     """
+    result = []
+    with open("files/input/data.csv", "r", encoding="utf-8") as f:
+        for line in f:
+            parts = line.strip().split("\t")
+            if not parts:
+                continue
+            letter = parts[0]
+            col4_count = 0
+            col5_count = 0
+            if len(parts) >= 4 and parts[3].strip() != "":
+                col4_count = len(parts[3].split(","))
+            if len(parts) >= 5 and parts[4].strip() != "":
+                col5_count = len(parts[4].split(","))
+            result.append((letter, col4_count, col5_count))
+    return result
